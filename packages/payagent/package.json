@@ -1,6 +1,6 @@
 {
   "name": "payagent",
-  "version": "2.14.0",
+  "version": "2.14.1",
   "description": "Let AI agents pay for APIs. The ArisPay SDK + CLI for x402 payments with delegated-custody wallets — no private keys in your process.",
   "type": "module",
   "main": "./dist/index.js",
@@ -72,12 +72,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "url": "git+https://github.com/arispay-inc/arispay-x402.git",
     "directory": "packages/payagent"
   },
-  "homepage": "https://arispay.app",
+  "homepage": "https://github.com/arispay-inc/arispay-x402/tree/main/packages/payagent#readme",
   "bugs": {
-    "url": "https://github.com/arispay-inc/ArisPay/issues"
+    "url": "https://github.com/arispay-inc/arispay-x402/issues"
   },
   "dependencies": {
     "ethers": "^6.13.0",

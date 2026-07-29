@@ -43,12 +43,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "url": "git+https://github.com/arispay-inc/arispay-x402.git",
     "directory": "packages/buyforme-mcp"
   },
-  "homepage": "https://github.com/arispay-inc/ArisPay/tree/master/packages/buyforme-mcp#readme",
+  "homepage": "https://github.com/arispay-inc/arispay-x402/tree/main/packages/buyforme-mcp#readme",
   "bugs": {
-    "url": "https://github.com/arispay-inc/ArisPay/issues"
+    "url": "https://github.com/arispay-inc/arispay-x402/issues"
   },
   "dependencies": {
     "@arispay/payagent-mcp": "workspace:^"

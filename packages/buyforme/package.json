@@ -30,14 +30,14 @@
   },
   "author": "Polar Industries Ltd",
   "license": "MIT",
-  "homepage": "https://github.com/arispay-inc/ArisPay/tree/master/packages/buyforme#readme",
+  "homepage": "https://github.com/arispay-inc/arispay-x402/tree/main/packages/buyforme#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "url": "git+https://github.com/arispay-inc/arispay-x402.git",
     "directory": "packages/buyforme"
   },
   "bugs": {
-    "url": "https://github.com/arispay-inc/ArisPay/issues"
+    "url": "https://github.com/arispay-inc/arispay-x402/issues"
   },
   "dependencies": {
     "payagent": "workspace:*"

@@ -1,5 +1,11 @@
 # @arispay/skill
 
+## 2.1.3
+
+### Patch Changes
+
+- de3c99e: Point repository/homepage/bugs metadata at the public source repository (arispay-inc/arispay-x402) — npm links now resolve publicly.
+
 ## 2.1.2
 
 ### Patch Changes

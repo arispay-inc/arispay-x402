@@ -1,5 +1,13 @@
 # @arispay/payagent-mcp
 
+## 3.2.1
+
+### Patch Changes
+
+- de3c99e: Point repository/homepage/bugs metadata at the public source repository (arispay-inc/arispay-x402) — npm links now resolve publicly.
+- Updated dependencies [de3c99e]
+  - payagent@2.14.1
+
 ## 3.2.0
 
 ### Minor Changes

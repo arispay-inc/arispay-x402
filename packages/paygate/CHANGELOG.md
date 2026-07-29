@@ -1,5 +1,11 @@
 # paygate
 
+## 5.4.1
+
+### Patch Changes
+
+- de3c99e: Point repository/homepage/bugs metadata at the public source repository (arispay-inc/arispay-x402) — npm links now resolve publicly.
+
 ## 5.4.0
 
 ### Minor Changes

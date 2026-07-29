@@ -1,8 +1,8 @@
 {
   "name": "agentmarketplace",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "private": false,
-  "description": "Default registry for AI agents \u2014 publish and discover MCP servers, x402-priced HTTP agents, and anything callable.",
+  "description": "Default registry for AI agents — publish and discover MCP servers, x402-priced HTTP agents, and anything callable.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -43,16 +43,16 @@
     "agent-directory",
     "agent-discovery"
   ],
-  "homepage": "https://github.com/arispay-inc/ArisPay/tree/master/packages/agentmarketplace#readme",
+  "homepage": "https://github.com/arispay-inc/arispay-x402/tree/main/packages/agentmarketplace#readme",
   "bugs": {
-    "url": "https://github.com/arispay-inc/ArisPay/issues"
+    "url": "https://github.com/arispay-inc/arispay-x402/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "url": "git+https://github.com/arispay-inc/arispay-x402.git",
     "directory": "packages/agentmarketplace"
   },
   "dependencies": {
-    "payagent": "^2.14.0"
+    "payagent": "^2.14.1"
   }
 }

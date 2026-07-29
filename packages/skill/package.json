@@ -1,6 +1,6 @@
 {
   "name": "@arispay/skill",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "ArisPay skill for Hermes-style AI agents. Directs agents to `npx payagent pay <url>` for any paid API call — self-bootstraps auth, agent provisioning, and USDC funding.",
   "type": "module",
   "bin": {
@@ -33,12 +33,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "url": "git+https://github.com/arispay-inc/arispay-x402.git",
     "directory": "packages/skill"
   },
-  "homepage": "https://github.com/arispay-inc/ArisPay/tree/master/packages/skill",
+  "homepage": "https://github.com/arispay-inc/arispay-x402/tree/main/packages/skill#readme",
   "bugs": {
-    "url": "https://github.com/arispay-inc/ArisPay/issues"
+    "url": "https://github.com/arispay-inc/arispay-x402/issues"
   },
   "private": false
 }
