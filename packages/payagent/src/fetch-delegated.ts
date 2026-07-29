@@ -180,9 +180,18 @@ export function payFetchDelegated(config: PayFetchDelegatedConfig): PayFetchFn {
       }
     }
 
-    // Retry with the X-PAYMENT header.
+    // Retry with the version-appropriate payment header. The x402 v2 wire
+    // protocol renamed it: v1 middlewares read `X-PAYMENT`, upstream v2
+    // middlewares (@x402/* ≥2.x) read ONLY `PAYMENT-SIGNATURE` — sending a
+    // v2 payload as X-PAYMENT is silently treated as "no payment at all"
+    // (an unpaid 402 with empty body, no verify ever reaching the
+    // facilitator). Both headers are set so mislabeled sellers on either
+    // side of the rename still find the payload; servers read exactly one.
     const retryHeaders = new Headers(init?.headers);
     retryHeaders.set("X-PAYMENT", signed.paymentHeader);
+    if (x402Version === 2) {
+      retryHeaders.set("PAYMENT-SIGNATURE", signed.paymentHeader);
+    }
     const paid = await fetch(urlStr, { ...init, headers: retryHeaders });
     if (paid.status === 402) {
       // Read the seller's response body so callers can see the verifier's

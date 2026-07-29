@@ -1,5 +1,31 @@
 # payagent
 
+## 2.15.0
+
+### Minor Changes
+
+- b10ce72: New public surface: `DelegationClient.rotateX402Key(agentId)` — wraps the new
+  `POST /v1/agents/:id/x402-key/rotate` recovery endpoint. Mints a fresh agent
+  key for an x402 delegation whose key was lost. The previous credential
+  always stops working for delegated signing; its org ApiKey record is
+  additionally revoked when the server can identify it, reported via
+  `previousKeyRevoked`. When `previousKeyRevoked` is `false` (some legacy
+  delegations), the old key can no longer sign but may still authenticate to
+  non-signing org API routes until it is revoked manually. The new plaintext
+  is returned once. Wallet, network, limits, allowedDomains, spend counters
+  and suspension are untouched. Requires a developer management credential —
+  agent-scoped keys cannot rotate themselves or sibling agents. Adds the
+  `RotateX402KeyResponse` type.
+
+### Patch Changes
+
+- 3305b38: Fix: `payFetchDelegated` now sends the signed payment on the
+  version-appropriate header. The x402 v2 wire protocol renamed the request
+  header — upstream `@x402/*` v2 middlewares read only `PAYMENT-SIGNATURE`,
+  so a v2 payload sent as `X-PAYMENT` was silently treated as unpaid (402
+  with empty body; the facilitator was never contacted). v2 challenges now
+  get both `PAYMENT-SIGNATURE` and `X-PAYMENT`; v1 behavior is unchanged.
+
 ## 2.14.1
 
 ### Patch Changes

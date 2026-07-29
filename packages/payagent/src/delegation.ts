@@ -109,6 +109,21 @@ export interface RenameAgentResponse {
   network?: string;
 }
 
+/** Response of `POST /v1/agents/:id/x402-key/rotate`. */
+export interface RotateX402KeyResponse {
+  agentId: string;
+  walletAddress: string;
+  network: string;
+  /** New plaintext agent key. Returned once — persist it immediately. */
+  apiKey: string;
+  apiKeyPrefix: string;
+  /** False when the previous credential's ApiKey row could not be identified
+   *  (some legacy delegations). The old key can no longer sign either way,
+   *  but when false it may still authenticate to non-signing org API routes
+   *  until that ApiKey is revoked manually. */
+  previousKeyRevoked: boolean;
+}
+
 /**
  * Patch shape for `PATCH /v1/agents/:id`. Every field optional — only
  * the keys explicitly set are forwarded. Limit fields are cents
@@ -639,6 +654,34 @@ export class DelegationClient {
       "PATCH",
       `/v1/agents/${encodeURIComponent(agentId)}`,
       patch,
+    );
+  }
+
+  /**
+   * Rotate an x402 agent's delegation key — the recovery path when the
+   * agent key from `createX402Agent` / bootstrap is lost. The server mints
+   * a fresh agent key and returns the new plaintext ONCE — it is never
+   * recoverable afterwards, so persist it immediately. Wallet, network,
+   * limits, allowedDomains, spend counters, and suspension are untouched.
+   *
+   * Revocation of the previous credential is two-layered and the second
+   * layer is CONDITIONAL: the old key always stops working for delegated
+   * signing, and its org ApiKey record is additionally revoked when the
+   * server can identify it — reported via `previousKeyRevoked`. When
+   * `previousKeyRevoked` is `false` (some legacy delegations), the old key
+   * can no longer sign but MAY STILL AUTHENTICATE to non-signing org API
+   * routes until you revoke that ApiKey manually (dashboard → API keys).
+   *
+   * Requires a developer management credential (or a dashboard session).
+   * Agent-scoped keys are rejected with 403 — an agent key cannot rotate
+   * itself or any sibling agent. A concurrent rotation of the same agent
+   * returns 409 `ROTATION_CONFLICT` for the loser; the winner's key is
+   * unaffected.
+   */
+  async rotateX402Key(agentId: string): Promise<RotateX402KeyResponse> {
+    return this.request<RotateX402KeyResponse>(
+      "POST",
+      `/v1/agents/${encodeURIComponent(agentId)}/x402-key/rotate`,
     );
   }
 

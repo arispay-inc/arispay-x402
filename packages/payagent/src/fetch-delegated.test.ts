@@ -72,6 +72,39 @@ describe("payFetchDelegated — delegated-sign roundtrip", () => {
     expect(new Headers(retryInit.headers).get("X-PAYMENT")).toBe("b64payload");
   });
 
+  it("v2 challenge → retry ALSO carries PAYMENT-SIGNATURE (upstream v2 middlewares read only that name)", async () => {
+    // The x402 v2 wire protocol renamed the request header; a v2 payload
+    // sent only as X-PAYMENT is silently treated as unpaid by @x402/* ≥2.x
+    // servers. This pin is the regression guard for the 2026-07-29 live
+    // failure against the demo seller.
+    arm();
+    const fetch402 = payFetchDelegated({ arispayUrl: "https://api.test", apiKey: "ap_test_x" });
+    await fetch402("https://example.com/api");
+    const headers = new Headers((fetchMock.mock.calls[2]?.[1] as RequestInit).headers);
+    expect(headers.get("PAYMENT-SIGNATURE")).toBe("b64payload");
+    expect(headers.get("X-PAYMENT")).toBe("b64payload");
+  });
+
+  it("v1 challenge → retry carries X-PAYMENT only (no v2 header leakage)", async () => {
+    fetchMock
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            x402Version: 1,
+            accepts: [{ ...baseAccept, network: "base", maxAmountRequired: "10000" }],
+          }),
+          { status: 402, headers: { "content-type": "application/json" } },
+        ),
+      )
+      .mockResolvedValueOnce(ok(signResponse))
+      .mockResolvedValueOnce(ok({ data: "paid content" }));
+    const fetch402 = payFetchDelegated({ arispayUrl: "https://api.test", apiKey: "ap_test_x" });
+    await fetch402("https://example.com/api");
+    const headers = new Headers((fetchMock.mock.calls[2]?.[1] as RequestInit).headers);
+    expect(headers.get("X-PAYMENT")).toBe("b64payload");
+    expect(headers.get("PAYMENT-SIGNATURE")).toBeNull();
+  });
+
   it("fires onPayment with post-payment spend and computed remaining headroom", async () => {
     arm();
     const seen: DelegatedPaymentInfo[] = [];

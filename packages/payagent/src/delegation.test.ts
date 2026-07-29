@@ -640,3 +640,45 @@ describe("DelegationClient.renameAgent", () => {
     await expect(client.renameAgent("agent_xyz", "Travel")).rejects.toThrow(/already exists/);
   });
 });
+
+describe("DelegationClient.rotateX402Key", () => {
+  it("POSTs /v1/agents/:id/x402-key/rotate and returns the one-time key payload", async () => {
+    const fetch = stubFetch([
+      {
+        status: 200,
+        body: {
+          agentId: "agent_xyz",
+          walletAddress: "0xWal",
+          network: "base",
+          // The canonical public test fixture — allowlisted by the source
+          // exporter's secret scan (scripts/export-public-source.mjs); a
+          // novel ap_live_ string here fails the export-completeness test.
+          apiKey: "ap_live_deadbeef1234567890abcdef1234567890abcdef12345678",
+          apiKeyPrefix: "ap_live_dead",
+          previousKeyRevoked: true,
+        },
+      },
+    ]);
+    const client = new DelegationClient(BASE, "ap_live_dev");
+    const result = await client.rotateX402Key("agent_xyz");
+    expect(result.apiKey).toMatch(/^ap_live_/);
+    expect(result.previousKeyRevoked).toBe(true);
+    const [url, init] = fetch.mock.calls[0] as [string, RequestInit];
+    expect(url).toBe(`${BASE}/v1/agents/agent_xyz/x402-key/rotate`);
+    expect(init.method).toBe("POST");
+    expect(init.body).toBeUndefined();
+  });
+
+  it("surfaces a 404 for agents without a delegation", async () => {
+    stubFetch([
+      {
+        status: 404,
+        body: {
+          error: { code: "AGENT_NOT_FOUND", message: "Agent has no x402 delegation to rotate" },
+        },
+      },
+    ]);
+    const client = new DelegationClient(BASE, "ap_live_dev");
+    await expect(client.rotateX402Key("agent_xyz")).rejects.toThrow(/no x402 delegation/);
+  });
+});

@@ -40,6 +40,6 @@
     "url": "https://github.com/arispay-inc/arispay-x402/issues"
   },
   "dependencies": {
-    "payagent": "^2.14.1"
+    "payagent": "^2.15.0"
   }
 }

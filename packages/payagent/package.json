@@ -1,6 +1,6 @@
 {
   "name": "payagent",
-  "version": "2.14.1",
+  "version": "2.15.0",
   "description": "Let AI agents pay for APIs. The ArisPay SDK + CLI for x402 payments with delegated-custody wallets — no private keys in your process.",
   "type": "module",
   "main": "./dist/index.js",
