@@ -59,7 +59,7 @@ importers:
   packages/buyforme:
     dependencies:
       payagent:
-        specifier: workspace:*
+        specifier: ^2.14.1
         version: link:../payagent
 
   packages/buyforme-mcp:

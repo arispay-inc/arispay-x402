@@ -3,17 +3,17 @@
   "name": "io.github.stevemilton/buyforme-mcp",
   "description": "BuyForMe: pay any x402 URL (USD or EUR) with ArisPay delegated custody. Alias of payagent-mcp.",
   "repository": {
-    "url": "https://github.com/arispay-inc/ArisPay",
+    "url": "https://github.com/arispay-inc/arispay-x402",
     "source": "github",
     "subfolder": "packages/buyforme-mcp"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "buyforme-mcp",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "transport": {
         "type": "stdio"
       },

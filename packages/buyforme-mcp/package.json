@@ -1,6 +1,6 @@
 {
   "name": "buyforme-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MCP server alias for @arispay/payagent-mcp. Configure your Claude Desktop / Cursor / Windsurf MCP server as `npx buyforme-mcp` to let the model pay any x402 URL via ArisPay delegated custody.",
   "type": "module",
   "bin": {

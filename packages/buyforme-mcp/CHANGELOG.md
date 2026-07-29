@@ -1,5 +1,15 @@
 # buyforme-mcp
 
+## 1.0.2
+
+### Patch Changes
+
+- Metadata only: `repository` / `homepage` / `bugs` now point at the public
+  source repo (github.com/arispay-inc/arispay-x402), matching every other
+  ArisPay npm package after the 2026-07-29 metadata cutover. `server.json`
+  repository updated in lockstep. No code changes; the bin and its
+  `@arispay/payagent-mcp` dependency chain are unchanged.
+
 ## 0.2.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "buyforme",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tiny CLI alias for payagent. `npx buyforme <url>` proxies to `payagent pay <url>` — let AI agents (or you) pay for any URL with USDC over x402.",
   "type": "module",
   "bin": {
@@ -40,6 +40,6 @@
     "url": "https://github.com/arispay-inc/arispay-x402/issues"
   },
   "dependencies": {
-    "payagent": "workspace:*"
+    "payagent": "^2.14.1"
   }
 }
