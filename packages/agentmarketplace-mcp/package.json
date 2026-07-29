@@ -1,0 +1,59 @@
+{
+  "name": "agentmarketplace-mcp",
+  "version": "0.4.1",
+  "private": false,
+  "mcpName": "io.github.stevemilton/agentmarketplace-mcp",
+  "description": "MCP server that lets Claude, Cursor, and any MCP client discover and install AI agents from the default agent marketplace.",
+  "type": "module",
+  "bin": {
+    "agentmarketplace-mcp": "dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai-agent",
+    "marketplace",
+    "agent-discovery",
+    "claude",
+    "cursor",
+    "windsurf",
+    "agent-directory"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/arispay-inc/ArisPay/tree/master/packages/agentmarketplace-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/arispay-inc/ArisPay/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "directory": "packages/agentmarketplace-mcp"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "agentmarketplace": "^0.7.1",
+    "payagent": "^2.14.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

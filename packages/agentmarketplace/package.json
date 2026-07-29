@@ -1,0 +1,58 @@
+{
+  "name": "agentmarketplace",
+  "version": "0.7.1",
+  "private": false,
+  "description": "Default registry for AI agents \u2014 publish and discover MCP servers, x402-priced HTTP agents, and anything callable.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "agentmarketplace": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/cli.js && mkdir -p dist/skill && cp -f src/skill/SKILL.md dist/skill/SKILL.md",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "prepublishOnly": "pnpm build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.2.6"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ai-agent",
+    "arispay",
+    "marketplace",
+    "mcp",
+    "x402",
+    "agent-registry",
+    "agent-directory",
+    "agent-discovery"
+  ],
+  "homepage": "https://github.com/arispay-inc/ArisPay/tree/master/packages/agentmarketplace#readme",
+  "bugs": {
+    "url": "https://github.com/arispay-inc/ArisPay/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "directory": "packages/agentmarketplace"
+  },
+  "dependencies": {
+    "payagent": "^2.14.0"
+  }
+}

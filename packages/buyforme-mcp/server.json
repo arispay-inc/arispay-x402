@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.stevemilton/buyforme-mcp",
+  "description": "BuyForMe: pay any x402 URL (USD or EUR) with ArisPay delegated custody. Alias of payagent-mcp.",
+  "repository": {
+    "url": "https://github.com/arispay-inc/ArisPay",
+    "source": "github",
+    "subfolder": "packages/buyforme-mcp"
+  },
+  "version": "1.0.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "buyforme-mcp",
+      "version": "1.0.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ARISPAY_API_KEY",
+          "description": "Optional. ArisPay developer API key (ap_live_… / ap_test_…). The bootstrap_agent tool can self-provision one from just an email.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

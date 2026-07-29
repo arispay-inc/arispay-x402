@@ -1,0 +1,111 @@
+{
+  "name": "payagent",
+  "version": "2.14.0",
+  "description": "Let AI agents pay for APIs. The ArisPay SDK + CLI for x402 payments with delegated-custody wallets — no private keys in your process.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "payagent": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./vercel": {
+      "import": "./dist/vercel.js",
+      "types": "./dist/vercel.d.ts"
+    },
+    "./langchain": {
+      "import": "./dist/langchain.js",
+      "types": "./dist/langchain.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "scripts/postinstall.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup && chmod +x dist/cli.js",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit",
+    "postinstall": "node scripts/postinstall.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "arispay",
+    "ai-agent",
+    "autonomous-agent",
+    "http-402",
+    "x402",
+    "payment",
+    "usdc",
+    "stablecoin",
+    "micropayment",
+    "api-payment",
+    "langchain",
+    "openai",
+    "claude",
+    "mcp",
+    "agent-tool",
+    "web3",
+    "eip-3009",
+    "base",
+    "ethereum",
+    "polygon",
+    "cdp",
+    "delegated-custody",
+    "eurc",
+    "euro",
+    "agent-wallet",
+    "agentic-payments",
+    "pay-for-api"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Polar Industries Ltd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "directory": "packages/payagent"
+  },
+  "homepage": "https://arispay.app",
+  "bugs": {
+    "url": "https://github.com/arispay-inc/ArisPay/issues"
+  },
+  "dependencies": {
+    "ethers": "^6.13.0",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "peerDependencies": {
+    "@langchain/core": ">=0.2.0",
+    "ai": ">=3.0.0",
+    "zod": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "ai": {
+      "optional": true
+    },
+    "zod": {
+      "optional": true
+    },
+    "@langchain/core": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@langchain/core": "^1.1.39",
+    "@types/node": "^22.0.0",
+    "@types/qrcode-terminal": "^0.12.2",
+    "ai": "^6.0.149",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.0",
+    "zod": "^4.3.6"
+  }
+}

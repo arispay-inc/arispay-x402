@@ -1,0 +1,58 @@
+{
+  "name": "buyforme-mcp",
+  "version": "1.0.1",
+  "description": "MCP server alias for @arispay/payagent-mcp. Configure your Claude Desktop / Cursor / Windsurf MCP server as `npx buyforme-mcp` to let the model pay any x402 URL via ArisPay delegated custody.",
+  "type": "module",
+  "bin": {
+    "buyforme-mcp": "./bin/server.js"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "arispay",
+    "payagent",
+    "buyforme",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai-agent",
+    "http-402",
+    "x402",
+    "payment",
+    "usdc",
+    "stablecoin",
+    "claude",
+    "cursor",
+    "windsurf",
+    "agent-tool",
+    "alias",
+    "agent-wallet",
+    "shopping-agent",
+    "agent-payments"
+  ],
+  "engines": {
+    "node": ">=20.6"
+  },
+  "author": "Polar Industries Ltd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "directory": "packages/buyforme-mcp"
+  },
+  "homepage": "https://github.com/arispay-inc/ArisPay/tree/master/packages/buyforme-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/arispay-inc/ArisPay/issues"
+  },
+  "dependencies": {
+    "@arispay/payagent-mcp": "workspace:^"
+  },
+  "private": false,
+  "mcpName": "io.github.stevemilton/buyforme-mcp"
+}

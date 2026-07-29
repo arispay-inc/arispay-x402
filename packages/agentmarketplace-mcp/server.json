@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.stevemilton/agentmarketplace-mcp",
+  "description": "Discover MCP servers + tools, auto-install into any client, pay for x402 endpoints in USDC.",
+  "repository": {
+    "url": "https://github.com/arispay-inc/ArisPay",
+    "source": "github",
+    "subfolder": "packages/agentmarketplace-mcp"
+  },
+  "version": "0.3.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "agentmarketplace-mcp",
+      "version": "0.3.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ARISPAY_API_KEY",
+          "description": "Optional. ArisPay API key (ap_live_… or an agent-scoped key from `agentmarketplace agent create`). Required only for publish_agent and paid call_agent invocations.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "AGENTMARKETPLACE_URL",
+          "description": "Override the registry URL. Default: https://api.arispay.app/v1/marketplace",
+          "isRequired": false
+        }
+      ]
+    }
+  ]
+}

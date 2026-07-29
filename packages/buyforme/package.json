@@ -1,0 +1,45 @@
+{
+  "name": "buyforme",
+  "version": "0.1.1",
+  "description": "Tiny CLI alias for payagent. `npx buyforme <url>` proxies to `payagent pay <url>` — let AI agents (or you) pay for any URL with USDC over x402.",
+  "type": "module",
+  "bin": {
+    "buyforme": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "arispay",
+    "payagent",
+    "ai-agent",
+    "autonomous-agent",
+    "http-402",
+    "x402",
+    "payment",
+    "usdc",
+    "stablecoin",
+    "agent-tool",
+    "cli",
+    "alias"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Polar Industries Ltd",
+  "license": "MIT",
+  "homepage": "https://github.com/arispay-inc/ArisPay/tree/master/packages/buyforme#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "directory": "packages/buyforme"
+  },
+  "bugs": {
+    "url": "https://github.com/arispay-inc/ArisPay/issues"
+  },
+  "dependencies": {
+    "payagent": "workspace:*"
+  }
+}

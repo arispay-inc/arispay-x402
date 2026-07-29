@@ -1,0 +1,56 @@
+# Smithery configuration for buyforme-mcp
+# https://smithery.ai/docs/config
+#
+# buyforme-mcp is the user-brand alias of @arispay/payagent-mcp — the stdio
+# stream passes through unmodified, so the tool surface is identical.
+
+name: buyforme
+displayName: BuyForMe
+description: >
+  Let your AI model buy things: pay any x402-priced URL in USD (USDC) or EUR
+  (EURC) on Base with delegated custody — no private keys on the agent.
+  One-line setup: run the MCP server as `npx buyforme-mcp`. Settlement runs
+  through the open ArisPay x402 facilitator
+  (https://facilitator.arispay.app — no facilitator fee).
+
+# MCP runtime — stdio subprocess via npx
+runtime: stdio
+command:
+  type: npx
+  name: buyforme-mcp
+
+# User-configurable environment variables
+env:
+  ARISPAY_API_KEY:
+    description: >
+      Optional. ArisPay developer API key (ap_live_… / ap_test_…). The
+      bootstrap_agent tool can self-provision one from just an email, and
+      credentials persist to ~/.payagent/config.json.
+    required: false
+
+tags:
+  - payments
+  - x402
+  - wallet
+  - usdc
+  - eurc
+  - shopping
+  - agentic-commerce
+
+categories:
+  - Finance
+
+homepage: https://buyforme.arispay.app
+repository: https://github.com/arispay-inc/ArisPay
+license: MIT
+
+examples:
+  - name: Pay a paid URL
+    description: Fetch an x402-protected URL, paying transparently
+    query: buy this for me — https://api.example.com/paid-endpoint
+  - name: Self-onboard from nothing
+    description: Provision an account + agent wallet in one call
+    query: set up a BuyForMe wallet with my email
+  - name: Check the wallet
+    description: Report wallet balance
+    query: how much money does my agent have left?

@@ -1,0 +1,58 @@
+# Smithery configuration for agentmarketplace-mcp
+# https://smithery.ai/docs/config
+
+name: agentmarketplace-mcp
+displayName: AgentMarketplace
+description: >
+  Discover, install, and call AI agents from the default agent marketplace.
+  The only MCP-facing registry with native x402 payment settlement — agents
+  can search thousands of MCP servers and HTTP endpoints, install them into
+  their config with one command, and pay for paid tools via USDC on Base.
+
+# MCP runtime — stdio subprocess via npx
+runtime: stdio
+command:
+  type: npx
+  name: agentmarketplace-mcp
+
+# User-configurable environment variables
+env:
+  ARISPAY_API_KEY:
+    description: >
+      Optional. ArisPay API key (ap_live_… or an agent-scoped key returned by
+      `agentmarketplace agent create`). Required only for publish_agent and
+      call_agent with paid tools.
+    required: false
+  AGENTMARKETPLACE_URL:
+    description: >
+      Override the registry URL. Default: https://api.arispay.app/v1/marketplace
+    required: false
+
+tags:
+  - discovery
+  - registry
+  - marketplace
+  - x402
+  - payments
+  - directory
+
+categories:
+  - Developer Tools
+
+homepage: https://arispay.app
+repository: https://github.com/arispay-inc/ArisPay
+license: MIT
+
+examples:
+  - name: Search for browser-automation agents
+    description: Find every MCP server tagged as a browser tool
+    query: find an MCP server for browser automation
+  - name: Install an agent by slug
+    description: Auto-write the MCP config for a specific agent
+    query: install the modelcontextprotocol/filesystem MCP server
+  - name: Search across tools, not just servers
+    description: Find tools by capability, across all indexed MCP servers
+    query: what tools can read from a filesystem?
+  - name: Call a paid HTTP agent
+    description: Invoke an x402-priced endpoint with USDC via ArisPay
+    query: call the arispay/x402-demo endpoint

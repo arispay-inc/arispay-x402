@@ -1,0 +1,96 @@
+{
+  "name": "paygate",
+  "version": "5.4.0",
+  "description": "Accept payment from AI agents in two lines of code. Gate any Express or Fastify route with an x402 paywall — USD (USDC) or EUR (EURC) pricing, settled on Base mainnet via ArisPay's facilitator.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "paygate": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./express": {
+      "import": "./dist/express.js",
+      "types": "./dist/express.d.ts"
+    },
+    "./fastify": {
+      "import": "./dist/fastify.js",
+      "types": "./dist/fastify.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/cli.js",
+    "dev": "tsc --watch",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run --root ../.. packages/paygate/src/",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "ethers": ">=6.0.0",
+    "express": ">=4.0.0",
+    "fastify": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "ethers": {
+      "optional": true
+    },
+    "express": {
+      "optional": true
+    },
+    "fastify": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "ethers": "^6.16.0",
+    "express": "^5.0.0",
+    "fastify": "^5.8.5",
+    "typescript": "^5.7.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "x402",
+    "paywall",
+    "micropayments",
+    "usdc",
+    "api",
+    "middleware",
+    "express",
+    "fastify",
+    "ai-agent",
+    "http-402",
+    "stablecoin",
+    "base",
+    "ethereum",
+    "polygon",
+    "web3",
+    "eip-3009",
+    "payment-gateway",
+    "eur",
+    "eurc",
+    "euro",
+    "agentic-commerce",
+    "agent-payments",
+    "monetize-api",
+    "facilitator",
+    "x402-facilitator"
+  ],
+  "homepage": "https://arispay.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arispay-inc/ArisPay.git",
+    "directory": "packages/paygate"
+  },
+  "private": false
+}

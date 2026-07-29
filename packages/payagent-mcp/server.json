@@ -1,0 +1,31 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.stevemilton/payagent-mcp",
+  "description": "Gives AI agents a wallet: pay x402 APIs (USD + EUR), check balances, self-onboard in one tool call.",
+  "repository": {
+    "url": "https://github.com/arispay-inc/ArisPay",
+    "source": "github",
+    "subfolder": "packages/payagent-mcp"
+  },
+  "websiteUrl": "https://arispay.app",
+  "version": "3.1.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@arispay/payagent-mcp",
+      "version": "3.1.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ARISPAY_API_KEY",
+          "description": "ArisPay developer API key (ap_live_… / ap_test_…). Optional — the bootstrap_agent tool can self-provision one from just an email.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
