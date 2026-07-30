@@ -51,6 +51,8 @@ const EXPECTED_PATHS: Record<InitFramework, string[]> = {
   next: [
     "package.json",
     "lib/x402.js",
+    "app/layout.js",
+    "app/page.js",
     "app/api/paid/route.js",
     "app/api/health/route.js",
     ".env.example",
@@ -181,6 +183,20 @@ describe("generateFiles — every framework", () => {
         assertJsSyntax(testnetFiles);
         assertJsSyntax(mainnetFiles);
       });
+
+      if (framework === "express") {
+        it("trusts exactly one TLS-terminating proxy hop for HTTPS resource URLs", () => {
+          expect(mustFind(mainnetFiles, "server.js").content).toContain(
+            "app.set('trust proxy', 1)",
+          );
+        });
+      }
+
+      if (framework === "fastify") {
+        it("trusts exactly one TLS-terminating proxy hop for HTTPS resource URLs", () => {
+          expect(mustFind(mainnetFiles, "server.js").content).toContain("trustProxy: 1");
+        });
+      }
     });
   }
 });
@@ -254,7 +270,25 @@ describe("generateFiles — details", () => {
   it("fastapi is marked as a generated standalone template", () => {
     const files = generateFiles(opts({ framework: "fastapi" }));
     const readme = mustFind(files, "README.md");
+    const main = mustFind(files, "main.py").content;
     expect(readme.content.toLowerCase()).toContain("standalone");
+    expect(main).toContain(
+      "from x402.extensions.bazaar import OutputConfig, declare_discovery_extension",
+    );
+    expect(main).toContain("from x402.http import FacilitatorConfig, HTTPFacilitatorClient");
+    expect(main).toContain("HTTPFacilitatorClient(FacilitatorConfig(url=FACILITATOR_URL))");
+    expect(main).toContain('output=OutputConfig(example={"ok": True, "data": "paid content"})');
+    expect(main).toContain('discovery_extension["bazaar"]["info"]["input"]["method"] = "GET"');
+    expect(mustFind(files, "requirements.txt").content).toContain(
+      "x402[fastapi,evm,extensions]>=2.17.0",
+    );
+  });
+
+  it("fastapi declares body discovery metadata for write methods", () => {
+    const files = generateFiles(opts({ framework: "fastapi", method: "POST" }));
+    const main = mustFind(files, "main.py").content;
+    expect(main).toContain('body_type="json"');
+    expect(main).toContain('discovery_extension["bazaar"]["info"]["input"]["method"] = "POST"');
   });
 });
 

@@ -2,11 +2,13 @@
 /**
  * paygate CLI.
  *
- *   npx paygate init [flags]   scaffold a working x402 seller
+ *   npx paygate init [flags]       scaffold a working x402 seller
+ *   npx paygate doctor <url>       validate Base mainnet readiness
  *
  * Zero runtime deps — see init.ts for the implementation.
  */
 
+import { runDoctor } from "./doctor.js";
 import { HELP_TEXT, runInit } from "./init.js";
 
 async function main(): Promise<number> {
@@ -16,9 +18,13 @@ async function main(): Promise<number> {
     return runInit(rest);
   }
 
+  if (command === "doctor" || command === "check") {
+    return runDoctor(rest);
+  }
+
   if (command === undefined || command === "--help" || command === "-h" || command === "help") {
     process.stdout.write(
-      `paygate — make your API payable in one command.\n\nCommands:\n  init    scaffold a working x402 seller\n\n${HELP_TEXT}`,
+      `paygate — make your API payable in one command.\n\nCommands:\n  init          scaffold a working x402 seller\n  doctor|check  validate an unpaid Base mainnet x402 endpoint\n\n${HELP_TEXT}`,
     );
     return command === undefined ? 1 : 0;
   }

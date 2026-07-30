@@ -1,5 +1,6 @@
 packages:
   - "packages/*"
+  - "templates/*"
 
 # Registry semver ranges that match an in-workspace package link to the
 # workspace copy (mirrors the private monorepo setting).

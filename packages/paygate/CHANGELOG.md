@@ -1,5 +1,12 @@
 # paygate
 
+## 5.5.0
+
+### Minor Changes
+
+- 50899ec: Add the read-only `doctor`/`check` command, complete clean-project generators,
+  and publish a Railway-ready no-signup Base mainnet seller template.
+
 ## 5.4.1
 
 ### Patch Changes

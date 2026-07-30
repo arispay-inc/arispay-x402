@@ -1,9 +1,13 @@
 # paygate
 
-Make your API payable in one command.
+Make your API payable on Base mainnet in 60 seconds. No ArisPay signup or
+secret is required; use the public wallet address that should receive USDC.
 
 ```bash
-npx paygate init
+npx paygate init --framework express --wallet 0xYourAddress \
+  --network base --price 1 --yes
+cd x402-express-seller
+npm install && cp .env.example .env && npm start
 ```
 
 `paygate init` scaffolds a **working x402 seller** — an HTTP API where a paid
@@ -12,6 +16,17 @@ pays it in stablecoins. Pick a framework, give it the wallet address that
 should receive the money, and you have a payable endpoint in under five
 minutes. No account, no API key: funds settle on-chain straight to your
 wallet through the [ArisPay facilitator](https://facilitator.arispay.app).
+The command above is production configuration and payments move real USDC.
+
+Verify a deployed endpoint without paying:
+
+```bash
+npx paygate doctor https://YOUR-SELLER.example/api/paid
+```
+
+`doctor` (alias: `check`) sends one unpaid, unauthenticated GET and validates
+the 402, HTTPS resource URL, x402 v2, Base mainnet, official USDC/EURC asset,
+and Bazaar metadata. Redirects are disabled and no payment header is sent.
 
 ```bash
 # Non-interactive (agents / CI): everything via flags
@@ -46,6 +61,10 @@ production; that flips `FACILITATOR_URL` to `https://facilitator.arispay.app`.
 
 See also the full quickstart: `docs/quickstart-accept-x402.md` in the
 [ArisPay repo](https://github.com/arispay-inc/ArisPay).
+
+For hosting, the public source mirror includes a
+[Railway seller template](https://github.com/arispay-inc/arispay-x402/tree/main/templates/railway-x402-seller)
+with exact template-composer settings and a read-only deployed smoke.
 
 ---
 

@@ -12,6 +12,10 @@ Public source for ArisPay's x402 npm packages:
 | [`agentmarketplace`](packages/agentmarketplace) | Marketplace CLI + client (publish, claim, validate, discover) |
 | [`agentmarketplace-mcp`](packages/agentmarketplace-mcp) | Marketplace MCP server (search, call_agent, proxy_tool_call, publish) |
 
+## Deploy a seller
+
+The [Railway seller template](templates/railway-x402-seller) accepts x402 payments on Base mainnet with no ArisPay account or secret. It needs only the public wallet address that receives USDC.
+
 Generated from ArisPay's private monorepo — see [GENERATED-SOURCE.md](GENERATED-SOURCE.md).
 Facilitator: https://facilitator.arispay.app · Docs: https://arispay.app
 

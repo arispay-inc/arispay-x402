@@ -1,0 +1,20 @@
+{
+  "name": "@arispay/railway-x402-seller-template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "No-signup x402 seller template for Railway and Base mainnet",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20.6"
+  },
+  "dependencies": {
+    "@x402/core": "^2.8.0",
+    "@x402/evm": "^2.8.0",
+    "@x402/express": "^2.8.0",
+    "@x402/extensions": "^2.8.0",
+    "express": "^4.21.2"
+  }
+}

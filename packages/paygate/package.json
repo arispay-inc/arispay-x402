@@ -1,6 +1,6 @@
 {
   "name": "paygate",
-  "version": "5.4.1",
+  "version": "5.5.0",
   "description": "Accept payment from AI agents in two lines of code. Gate any Express or Fastify route with an x402 paywall — USD (USDC) or EUR (EURC) pricing, settled on Base mainnet via ArisPay's facilitator.",
   "type": "module",
   "main": "./dist/index.js",
